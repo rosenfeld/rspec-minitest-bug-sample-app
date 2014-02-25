@@ -15,5 +15,12 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = 'random'
 
+  require 'minitest'
+  config.include Module.new{
+    # next # uncomment to see the bug
+    attr_writer :assertions
+    def assertions; @assertions ||= 0; end
+  }
+
   config.expect_with :stdlib
 end
